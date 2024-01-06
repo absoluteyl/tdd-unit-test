@@ -1,5 +1,4 @@
 require 'budget_service'
-require 'budget_repo'
 
 # 1. 查整個月
 # 2. 查單一天
