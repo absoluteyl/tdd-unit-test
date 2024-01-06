@@ -1,5 +1,4 @@
 require 'budget_repo'
-require 'time'
 require 'date'
 
 class BudgetService
@@ -13,8 +12,8 @@ class BudgetService
   def query(start_date, end_date)
     budgets = repo.getAll
 
-    start_date_time = Time.parse(start_date)
-    end_date_time = Time.parse(end_date)
+    start_date_time = Date.parse(start_date)
+    end_date_time = Date.parse(end_date)
 
     if start_date_time > end_date_time
       return 0
