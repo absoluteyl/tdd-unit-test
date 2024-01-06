@@ -23,7 +23,7 @@ class BudgetService
 
       month_budget= get_budget(start_date_time)
 
-      days_in_month = days_in_month(start_date_time)
+      days_in_month = month_budget.days_in_month
 
       if start_date_time.day == end_date_time.day
         return month_budget.amount.to_f / days_in_month
@@ -32,11 +32,11 @@ class BudgetService
       return month_budget.amount
     else
       last_budget = get_budget(end_date_time)
-      days_in_last_month = days_in_month(end_date_time)
+      days_in_last_month = last_budget.days_in_month
       last_month_days =  end_date_time.day
 
       first_budget = get_budget(start_date_time)
-      days_in_first_month = days_in_month(start_date_time)
+      days_in_first_month = first_budget.days_in_month
       first_month_days = days_in_first_month - start_date_time.day + 1
 
 
@@ -47,10 +47,6 @@ class BudgetService
   end
 
   private
-
-  def days_in_month(date)
-    Date.new(date.year, date.month, -1).day
-  end
 
   def get_budget(date)
     budgets.find{ |b| b.yearMonth == date.strftime("%Y%m") }
