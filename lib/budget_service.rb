@@ -16,6 +16,10 @@ class BudgetService
     start_date_time = Time.parse(start_date)
     end_date_time = Time.parse(end_date)
 
+    if start_date_time > end_date_time
+      return 0
+    end
+
     if start_date_time.year == end_date_time.year &&
       start_date_time.month == end_date_time.month
 

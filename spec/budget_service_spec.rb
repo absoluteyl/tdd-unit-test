@@ -25,6 +25,16 @@ RSpec.describe BudgetService, "#query" do
       expect(query_budget('20240130', '20240205')).to eq 520
     end
   end
+
+  context "when query start greater than end" do
+    it "should return 0" do
+      set_budgets([
+        {yearMonth: '202401', amount: 310},
+        {yearMonth: '202402', amount: 2900}
+      ])
+      expect(query_budget('20240131', '20240101')).to eq 0
+    end
+  end
 end
 
 def set_budgets(budgets)
