@@ -74,6 +74,20 @@ Henry | Jack | Score() | Remark
 | 3:5 | Jack Win | 測分數相差 > 1 時會顯示 Win |
 | 4:2 | Henry Win | 測沒有 deuce 且分數相差 > 1 時會顯示 Win |
 
+## FizzBuzz
+
+```ruby
+y = f(x)
+# given y is a string, x is a integer
+```
+
+1. x 可被 3 整除時回傳 "fizz"
+2. x 可被 5 整除時回傳 "buzz"
+3. x 包含 3 時也要回傳 "fizz"
+4. x 包含 5 時也要回傳 "buzz"
+5. x 為 0 時回傳 "0"
+6. (可以再多加上 7 的倍數回傳 "whizz" 之類的進階需求)
+
 ## Note
 
 1. 如果都可以完成同樣一件事，method 傳入的參數越少越好(Kent Beck)
