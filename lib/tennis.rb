@@ -32,9 +32,9 @@ class Tennis
   def score
     is_even = @point1 == @point2
     is_adv = @point1 > 3 && @point2 > 3 && (@point1 - @point2).abs == 1
-    before_duece = @point1 < 3 && @point2 < 3
+    before_deuce = @point1 < 3 && @point2 < 3
 
-    if before_duece
+    if before_deuce
       return "#{SCORE_STRING[@point1]} All" if is_even
       "#{SCORE_STRING[@point1]} #{SCORE_STRING[@point2]}"
     else
