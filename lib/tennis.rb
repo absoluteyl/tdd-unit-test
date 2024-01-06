@@ -10,7 +10,7 @@ class Tennis
     3 => "Forty"
   }
 
-  def initialize()
+  def initialize
     @player1 = "Henry"
     @player2 = "Jack"
     @point1 = 0
