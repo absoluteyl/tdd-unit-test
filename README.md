@@ -94,4 +94,10 @@ y = f(x)
 2. TDD 在解構需求時只先看 input, output，先不看裡面的 process (實作)
 3. 以每個測試案例之間最多只加一個 if 的順序來加測試
 4. test first 不是 TDD 的重點，think first 才是
-5.
+5. TDD 先專注在完成主幹的 test case，以比較複雜的需求來說可能是串接 DB, 第三方 API 等等。主幹完成後才去長 if-else 的條件判斷的 test case。(迭代式的產品增量)
+6. Refinement Meeting 盡量全員到齊討論 `驗收情境`，並用實例化需求來確認需求的 spec。
+
+## 補充資料
+
+1. [Coding Ninjas](https://www.codingninjas.com/)
+2.
