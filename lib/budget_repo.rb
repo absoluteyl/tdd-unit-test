@@ -1,7 +1,7 @@
 require 'budget'
 
 class BudgetRepo
-  def getAll
+  def self.getAll
     []
   end
 end
