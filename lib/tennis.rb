@@ -16,7 +16,7 @@ class Tennis
     @point1 = 0
     @point2 = 0
 
-    score()
+    score
   end
 
   def add_point(player)
