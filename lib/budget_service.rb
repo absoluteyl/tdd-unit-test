@@ -26,7 +26,7 @@ class BudgetService
       days_in_month = month_budget.days_in_month
 
       if start_date_time.day == end_date_time.day
-        return month_budget.amount.to_f / days_in_month
+        return month_budget.daily_amount
       end
 
       return month_budget.amount
@@ -39,8 +39,7 @@ class BudgetService
       days_in_first_month = first_budget.days_in_month
       first_month_days = days_in_first_month - start_date_time.day + 1
 
-
-      return (last_budget.amount.to_f / days_in_last_month) * last_month_days + (first_budget.amount.to_f / days_in_first_month) * first_month_days
+      return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days
     end
 
     return 0

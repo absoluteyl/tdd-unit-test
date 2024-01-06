@@ -15,4 +15,8 @@ class Budget
     month = yearMonth[-2..-1].to_i
     Date.new(year, month, -1).day
   end
+
+  def daily_amount
+    amount.to_f / days_in_month
+  end
 end
