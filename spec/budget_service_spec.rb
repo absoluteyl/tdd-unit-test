@@ -30,9 +30,10 @@ RSpec.describe BudgetService, "#query" do
         {yearMonth: '202401', amount: 310},
         {yearMonth: '202402', amount: 2900}
       ])
-      expect(BudgetService.new(budget_repo).query('20240130', '20240205')).to eq 520
+      expect(query_budget('20240130', '20240205')).to eq 520
     end
   end
+end
 
 def set_budgets(budgets)
   @budget_repo = double
@@ -41,7 +42,6 @@ def set_budgets(budgets)
   })
 end
 
-  def query_budget(start_date, end_date)
-    BudgetService.new(@budget_repo).query(start_date, end_date)
-  end
+def query_budget(start_date, end_date)
+  BudgetService.new(@budget_repo).query(start_date, end_date)
 end
