@@ -36,17 +36,17 @@ class Tennis
 
     if before_duece
       return "#{SCORE_STRING[@point1]} All" if is_even
-      return "#{SCORE_STRING[@point1]} #{SCORE_STRING[@point2]}"
+      "#{SCORE_STRING[@point1]} #{SCORE_STRING[@point2]}"
     else
       return "Deuce" if is_even
       return "#{score_leader} adv" if is_adv
-      return "#{score_leader} win"
+      "#{score_leader} win"
     end
   end
 
   private
 
   def score_leader
-    return @point1 > @point2 ? @player1 : @player2
+    @point1 > @point2 ? @player1 : @player2
   end
 end
