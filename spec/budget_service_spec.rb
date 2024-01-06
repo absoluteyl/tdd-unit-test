@@ -1,13 +1,5 @@
 require 'budget_service'
 
-# 1. 查整個月
-# 2. 查單一天
-# 3. 查跨月
-# 4. 起日大餘迄日
-# 5. 沒有資料
-# 6. 跨 3 個月，其中一個月沒資料
-
-
 RSpec.describe BudgetService, "#query" do
 
   context "when query whole month" do
