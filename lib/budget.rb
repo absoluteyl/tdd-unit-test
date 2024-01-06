@@ -8,9 +8,4 @@ class Budget
     @yearMonth = yearMonth
     @amount = amount
   end
-
-  def to_hash
-    { yearMonth: yearMonth, amount: amount }
-  end
-
 end
