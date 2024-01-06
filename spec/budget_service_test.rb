@@ -11,8 +11,9 @@ RSpec.describe BudgetService, "#amount" do
   context "when game start" do
     it "should return love all" do
       budgetService = BudgetService.new
-      budgetService.getAll = ()=>{
-        Budget.new('202004',300),
-      }
+      budgetService.getAll
+      # = ()=>{
+      #   Budget.new('202004',300),
+      # }
 
 end
