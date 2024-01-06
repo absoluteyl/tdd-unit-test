@@ -12,8 +12,6 @@ RSpec.describe BudgetService, "#amount" do
     it "should return love all" do
       budgetService = BudgetService.new
       budgetService.getAll
-      # = ()=>{
-      #   Budget.new('202004',300),
-      # }
-
+    end
+  end
 end

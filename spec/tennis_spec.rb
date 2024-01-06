@@ -7,5 +7,4 @@ RSpec.describe Tennis, "#score" do
       expect(tennis.score()).to eq("Love All")
     end
   end
-
 end
