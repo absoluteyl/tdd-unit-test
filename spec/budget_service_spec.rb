@@ -12,21 +12,15 @@ RSpec.describe BudgetService, "#query" do
 
   context "when query whole month" do
     it "should return 310" do
-      budget_repo = double
-      allow(budget_repo).to receive(:getAll).and_return([
-        Budget.new('202401', 310)
-      ])
-      expect(BudgetService.new(budget_repo).query('2024010101', '20240131')).to eq 310
+      set_budgets
+      expect(query_budget('2024010101', '20240131')).to eq 310
     end
   end
 
   context "when query single date of a month" do
     it "should return 10" do
-      budget_repo = double
-      allow(budget_repo).to receive(:getAll).and_return([
-        Budget.new('202401', 310)
-      ])
-      expect(BudgetService.new(budget_repo).query('2024010101', '2024010101')).to eq 10
+      set_budgets
+      expect(query_budget('2024010101', '2024010101')).to eq 10
     end
   end
 
@@ -39,5 +33,16 @@ RSpec.describe BudgetService, "#query" do
       ])
       expect(BudgetService.new(budget_repo).query('20240130', '20240205')).to eq 520
     end
+  end
+
+  def set_budgets
+    @budget_repo = double
+      allow(@budget_repo).to receive(:getAll).and_return([
+        Budget.new('202401', 310)
+      ])
+  end
+
+  def query_budget(start_date, end_date)
+    BudgetService.new(@budget_repo).query(start_date, end_date)
   end
 end
