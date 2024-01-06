@@ -3,15 +3,14 @@ require 'date'
 
 class BudgetService
 
-  attr_accessor :repo
+  attr_accessor :repo, :budgets
 
   def initialize(repo)
     @repo = repo
   end
-
+  
   def query(start_date, end_date)
-    budgets = repo.getAll
-
+    @budgets = repo.getAll
     start_date_time = Date.parse(start_date)
     end_date_time = Date.parse(end_date)
 
@@ -22,7 +21,7 @@ class BudgetService
     if start_date_time.year == end_date_time.year &&
       start_date_time.month == end_date_time.month
 
-      month_budget = budgets.find{ |b| b.yearMonth == start_date_time.strftime("%Y%m") }.amount
+      month_budget= get_amount(start_date_time)
 
       days_in_month = days_in_month(start_date_time)
 
@@ -32,11 +31,11 @@ class BudgetService
 
       return month_budget
     else
-      last_budget = budgets.find{ |b| b.yearMonth == end_date_time.strftime("%Y%m") }.amount
+      last_budget = get_amount(end_date_time)
       days_in_last_month = days_in_month(end_date_time)
       last_month_days =  end_date_time.day
 
-      first_budget = budgets.find{ |b| b.yearMonth == start_date_time.strftime("%Y%m") }.amount
+      first_budget = get_amount(start_date_time)
       days_in_first_month = days_in_month(start_date_time)
       first_month_days = days_in_first_month - start_date_time.day + 1
 
@@ -51,5 +50,9 @@ class BudgetService
 
   def days_in_month(date)
     Date.new(date.year, date.month, -1).day
+  end
+
+  def get_amount(date)
+    budgets.find{ |b| b.yearMonth == date.strftime("%Y%m") }.amount
   end
 end
