@@ -5,14 +5,14 @@ RSpec.describe BudgetService, "#query" do
   context "when query whole month" do
     it "should return 310" do
       set_budgets([{yearMonth: '202401', amount: 310}])
-      expect(query_budget('2024010101', '20240131')).to eq 310
+      expect(query_budget('20240101', '20240131')).to eq 310
     end
   end
 
   context "when query single date of a month" do
     it "should return 10" do
       set_budgets([{yearMonth: '202401', amount: 310}])
-      expect(query_budget('2024010101', '2024010101')).to eq 10
+      expect(query_budget('20240101', '20240101')).to eq 10
     end
   end
 
