@@ -9,7 +9,7 @@ require 'budget_repo'
 # 6. 跨 3 個月，其中一個月沒資料
 
 
-RSpec.describe BudgetService, "#amount" do
+RSpec.describe BudgetService, "#query" do
 
   context "when query whole month" do
     it "should return 310" do
