@@ -21,9 +21,7 @@ class BudgetService
     if start_date_time.year == end_date_time.year &&
       start_date_time.month == end_date_time.month
 
-      month_budget= get_budget(start_date_time)
-
-      days_in_month = month_budget.days_in_month
+      month_budget = get_budget(start_date_time)
 
       if start_date_time.day == end_date_time.day
         return month_budget.daily_amount
@@ -32,12 +30,10 @@ class BudgetService
       return month_budget.amount
     else
       last_budget = get_budget(end_date_time)
-      days_in_last_month = last_budget.days_in_month
       last_month_days = end_date_time.day
 
       first_budget = get_budget(start_date_time)
-      days_in_first_month = first_budget.days_in_month
-      first_month_days = days_in_first_month - start_date_time.day + 1
+      first_month_days = first_budget.days_in_month - start_date_time.day + 1
 
       return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days
     end
