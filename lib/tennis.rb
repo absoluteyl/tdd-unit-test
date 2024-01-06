@@ -4,10 +4,10 @@ class Tennis
   attr_accessor :point1,  :point2
 
   SCORE_STRING = {
-    0: "Love",
-    1: "Fifteen",
-    2: "Thirty",
-    3: "Forty"
+    0 => "Love",
+    1 => "Fifteen",
+    2 => "Thirty",
+    3 => "Forty"
   }
 
   def initialize()
