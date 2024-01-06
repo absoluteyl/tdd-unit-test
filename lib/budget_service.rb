@@ -1,5 +1,6 @@
 require 'budget_repo'
 require 'time'
+require 'date'
 
 class BudgetService
 
@@ -15,9 +16,31 @@ class BudgetService
     start_date_time = Time.parse(start_date)
     end_date_time = Time.parse(end_date)
 
-    if start_date_time.year == end_date_time.year && start_date_time.month == end_date_time.month
-      return budgets.find{ |b| b.yearMonth == start_date_time.strftime("%Y%m") }.amount
+    if start_date_time.year == end_date_time.year &&
+      start_date_time.month == end_date_time.month
+
+      month_budget = budgets.find{ |b| b.yearMonth == start_date_time.strftime("%Y%m") }.amount
+
+      days_in_month = Date.new(start_date_time.year, start_date_time.month, -1).day
+
+      if start_date_time.day == end_date_time.day
+        return month_budget.to_f / days_in_month
+      end
+
+      return month_budget
+    else
+      last_budget = budgets.find{ |b| b.yearMonth == end_date_time.strftime("%Y%m") }.amount
+      days_in_last_month = Date.new(end_date_time.year, end_date_time.month, -1).day
+      last_month_days =  end_date_time.day
+
+      first_budget = budgets.find{ |b| b.yearMonth == start_date_time.strftime("%Y%m") }.amount
+      days_in_first_month = Date.new(start_date_time.year, start_date_time.month, -1).day
+      first_month_days = days_in_first_month - start_date_time.day + 1
+
+
+      return (last_budget.to_f / days_in_last_month) * last_month_days + (first_budget.to_f / days_in_first_month) * first_month_days
     end
 
+    return 0
   end
 end
