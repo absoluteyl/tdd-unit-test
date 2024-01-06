@@ -33,7 +33,7 @@ class BudgetService
     else
       last_budget = get_budget(end_date_time)
       days_in_last_month = last_budget.days_in_month
-      last_month_days =  end_date_time.day
+      last_month_days = end_date_time.day
 
       first_budget = get_budget(start_date_time)
       days_in_first_month = first_budget.days_in_month
