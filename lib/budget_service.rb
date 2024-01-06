@@ -8,7 +8,7 @@ class BudgetService
   def initialize(repo)
     @repo = repo
   end
-  
+
   def query(start_date, end_date)
     @budgets = repo.getAll
     start_date_time = Date.parse(start_date)
