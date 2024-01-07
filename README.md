@@ -55,7 +55,7 @@ Henry | Jack | Score() | Remark
   Win --> [*]
 ```
 
-### Test Cases
+### Tennis Test Cases
 
 | Input | Output | Description |
 | --- | --- | --- |
@@ -110,7 +110,7 @@ y = f(x)
 | YearMonth | char6 | 202401 |
 | Amount | integer | 1000 |
 
-### Test Cases
+### BudgetService Test Cases
 
 | Start | End | Budget Data | Output | Description | Implementation |
 | --- | --- | --- | --- | --- | --- |
