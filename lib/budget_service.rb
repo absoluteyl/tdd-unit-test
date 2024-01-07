@@ -46,8 +46,6 @@ class BudgetService
 
       return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days + total_amount
     end
-
-    return 0
   end
 
   private
