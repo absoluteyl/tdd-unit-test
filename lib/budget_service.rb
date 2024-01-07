@@ -18,20 +18,33 @@ class BudgetService
       start_date_time.month == end_date_time.month
 
       month_budget = get_budget(start_date_time)
+      if month_budget.nil?
+        return 0
+      end
 
       if start_date_time.day == end_date_time.day
         return month_budget.daily_amount
       end
 
       return month_budget.amount
-    else
-      last_budget = get_budget(end_date_time)
-      last_month_days = end_date_time.day
 
+    else
       first_budget = get_budget(start_date_time)
       first_month_days = first_budget.days_in_month - start_date_time.day + 1
 
-      return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days
+      last_budget = get_budget(end_date_time)
+      last_month_days = end_date_time.day
+
+      total_amount = 0
+
+      start_month = start_date_time.next_month
+      end_month = end_date_time.prev_month
+
+      start_month.step(end_month).select{ |m| m.day == 1 }.each do |date|
+        total_amount += get_budget(date).amount
+      end
+
+      return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days + total_amount
     end
 
     return 0
