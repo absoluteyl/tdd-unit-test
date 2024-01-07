@@ -105,10 +105,10 @@ y = f(x)
 
 ### Budget Schema
 
-| Column | Type | Example |
-| --- | --- | --- |
-| YearMonth | char6 | 202401 |
-| Amount | integer | 1000 |
+| Column     | Type | Example |
+|------------| --- | --- |
+| year_month | char6 | 202401 |
+| amount     | integer | 1000 |
 
 ### BudgetService Test Cases
 

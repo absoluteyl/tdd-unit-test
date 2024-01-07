@@ -6,7 +6,7 @@ class BudgetService
   attr_accessor :budgets
 
   def query(start_date, end_date)
-    @budgets = BudgetRepo.getAll
+    @budgets = BudgetRepo.get_all
     start_date_time = Date.parse(start_date)
     end_date_time = Date.parse(end_date)
 
@@ -53,6 +53,6 @@ class BudgetService
   private
 
   def get_budget(date)
-    budgets.find{ |b| b.yearMonth == date.strftime("%Y%m") }
+    budgets.find{ |b| b.year_month == date.strftime("%Y%m") }
   end
 end
