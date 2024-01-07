@@ -146,5 +146,5 @@ Note: 在寫測試時盡量讓資料的值不要重覆，假如 2 月是 290 的
 
 ## 補充資料
 
-1. [Coding Ninjas](https://www.codingninjas.com/)
-2.
+1. [Coding Dojo](https://codingdojo.org/)
+2. [Codewars](https://www.codewars.com/)
