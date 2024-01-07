@@ -26,7 +26,7 @@ class BudgetService
         return month_budget.daily_amount
       end
 
-      return month_budget.amount
+      month_budget.amount
 
     else
       first_budget = get_budget(start_date_time)
@@ -44,7 +44,7 @@ class BudgetService
         total_amount += get_budget(date).amount
       end
 
-      return last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days + total_amount
+      last_budget.daily_amount * last_month_days + first_budget.daily_amount * first_month_days + total_amount
     end
   end
 
