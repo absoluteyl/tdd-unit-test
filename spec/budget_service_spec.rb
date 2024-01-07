@@ -38,12 +38,11 @@ RSpec.describe BudgetService, "#query" do
 end
 
 def set_budgets(budgets)
-  @budget_repo = double
-  allow(@budget_repo).to receive(:getAll).and_return(budgets.map{ |b|
+  allow(BudgetRepo).to receive(:getAll).and_return(budgets.map{ |b|
     Budget.new(b[:yearMonth], b[:amount])
   })
 end
 
 def query_budget(start_date, end_date)
-  BudgetService.new(@budget_repo).query(start_date, end_date)
+  BudgetService.new.query(start_date, end_date)
 end

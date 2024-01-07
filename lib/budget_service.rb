@@ -3,14 +3,10 @@ require 'date'
 
 class BudgetService
 
-  attr_accessor :repo, :budgets
-
-  def initialize(repo)
-    @repo = repo
-  end
+  attr_accessor :budgets
 
   def query(start_date, end_date)
-    @budgets = repo.getAll
+    @budgets = BudgetRepo.getAll
     start_date_time = Date.parse(start_date)
     end_date_time = Date.parse(end_date)
 
