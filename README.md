@@ -97,6 +97,12 @@ y = f(x)
 5. 起始日期 > 結束日期回傳 0
 6. 起始日期 = 結束日期回傳當天的預算金額
 
+### Domain
+
+1. 一筆 Budget 1 天多少錢
+2. 一筆 Budget 跟起迄的交集有多少天
+3. 每筆 Budget 交集的天數 x 該筆 Budget 1 天多少錢就是總預算
+
 ### DB Schema
 
 | Column | Type | Example |
@@ -130,6 +136,13 @@ Note: 在寫測試時盡量讓資料的值不要重覆，假如 2 月是 290 的
 4. test first 不是 TDD 的重點，think first 才是
 5. TDD 先專注在完成主幹的 test case，以比較複雜的需求來說可能是串接 DB, 第三方 API 等等。主幹完成後才去長 if-else 的條件判斷的 test case。(迭代式的產品增量)
 6. Refinement Meeting 盡量全員到齊討論 `驗收情境`，並用實例化需求來確認需求的 spec。
+
+## Code Smell
+
+1. Bad Name: 變數名稱本身無法辨識用途或到底是什麼物件
+2. private method 最深 1 層就好，call stack 越深越難 debug 跟重構
+3. early return 可以避面太過複雜的 if-else，也可以避免 debug 時要重覆確認一直被 reuse、覆寫的變數內容為何。
+
 
 ## 補充資料
 
