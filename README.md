@@ -44,11 +44,11 @@ Henry | Jack | Score() | Remark
 ```mermaid
   stateDiagram-v2
   [*] --> All
-  All --> LookupScoreName
-  LookupScoreName --> All
-  LookupScoreName --> Deuce
-  LookupScoreName --> LookupScoreName
-  LookupScoreName --> Win
+  All --> Lookup
+  Lookup --> All
+  Lookup --> Deuce
+  Lookup --> Lookup
+  Lookup --> Win
   Deuce --> Adv
   Adv --> Deuce
   Adv --> Win
@@ -88,7 +88,7 @@ y = f(x)
 5. x 為 0 時回傳 "0"
 6. (可以再多加上 7 的倍數回傳 "whizz" 之類的進階需求)
 
-## Budget Query
+## BudgetService
 
 1. 給定一段日期範圍，程式回傳該時間段內的預算金額(Decimal 或 Double)。
 2. 時間範圍大小沒有限制
@@ -103,7 +103,7 @@ y = f(x)
 2. 一筆 Budget 跟起迄的交集有多少天
 3. 每筆 Budget 交集的天數 x 該筆 Budget 1 天多少錢就是總預算
 
-### DB Schema
+### Budget Schema
 
 | Column | Type | Example |
 | --- | --- | --- |
@@ -112,21 +112,21 @@ y = f(x)
 
 ### Test Cases
 
-| YearMonth | Amount |
-| --- | --- |
-| 202401 | 310 |
-| 202402 | 2900 |
+| Start | End | Budget Data | Output | Description | Implementation |
+| --- | --- | --- | --- | --- | --- |
+| 20240513 | 20240516 | | 0 | 查詢區間沒有預算資料 | Method Sinature |
+| 20240501 | 20240531 | {"202405": 31} | 31 | 查詢區間是完整一個月 | BudgetRepo.getAll() |
+| 20240513 | 20240516 | {"202405": 31} | 4 | 查詢區間在同一個月份內 | End - Start |
+| 20230413 | 20240416 | {"202405": 31} | 0 | 查詢區間早於有預算的月份（完全沒交集）| Budget.FirstDay |
+| 20230613 | 20240616 | {"202405": 31} | 0 | 查詢區間晚於有預算的月份（完全沒交集）| Budget.LastDay |
+| 20230428 | 20240506 | {"202405": 31} | 6 | 查詢區間與有預算的月份前半有交集 | OverlappingStart |
+| 20230528 | 20240608 | {"202405": 31} | 4 | 查詢區間與有預算的月份後半有交集 | OverlappingEnd |
+| 20230528 | 20240608 | {"202405": 310} | 40 | 預算月份平均每日金額超過 1 | DailyAmount |
+| 20240428 | 20240608 | {"202404": 30, "202405": 310, "202406": 3000 } | 3+310+800 | 查跨多個月的預算 | Sum |
+| 20240131 | 20240101 | | 0 | 起日大餘迄日 | |
+| 20240130 | 20240305 | | 2920 | 查跨 3 個月的資料，且其中一個月沒資料 | |
 
 Note: 在寫測試時盡量讓資料的值不要重覆，假如 2 月是 290 的話，每日平均就跟 1 月一樣都是 10 元，有可能會讓測試明明有 bug 但還是通過。
-
-| Start | End | Output | Description |
-| --- | --- | --- | --- |
-| 20240101 | 20240131 | 310 | 查一整個月的預算 |
-| 20240101 | 20240101 | 10 | 查單一一天的預算 |
-| 20240130 | 20240205 | 520 | 查跨兩個月的預算 |
-| 20240131 | 20240101 | 0 | 起日大餘迄日 |
-| 20241201 | 20241231 | 0 | 查詢月份沒有預算資料 |
-| 20240130 | 20240305 | 2920 | 查跨 3 個月的資料，且其中一個月沒資料 |
 
 ## Note
 
@@ -142,7 +142,6 @@ Note: 在寫測試時盡量讓資料的值不要重覆，假如 2 月是 290 的
 1. Bad Name: 變數名稱本身無法辨識用途或到底是什麼物件
 2. private method 最深 1 層就好，call stack 越深越難 debug 跟重構
 3. early return 可以避面太過複雜的 if-else，也可以避免 debug 時要重覆確認一直被 reuse、覆寫的變數內容為何。
-
 
 ## 補充資料
 
